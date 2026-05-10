@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "CSDN 博客优化",
+  "version": "1.0.0",
+  "description": "访问 CSDN 博客时自动禁用 JavaScript 并阻止跳转登录页",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "csdn-blog-optim@standtrain",
+      "strict_min_version": "109.0"
+    }
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://blog.csdn.net/*",
+    "*://passport.csdn.net/*",
+    "*://*.csdnimg.cn/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://blog.csdn.net/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CSDN 博客优化"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "csdn_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}

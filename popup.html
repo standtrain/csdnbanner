@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 220px;
+      padding: 16px;
+      font-family: -apple-system, "Microsoft YaHei", sans-serif;
+      text-align: center;
+    }
+    h3 { margin: 0 0 12px; font-size: 14px; }
+    .toggle {
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+      background: #ccc;
+      border-radius: 13px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .toggle.active { background: #4caf50; }
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    .toggle.active::after { transform: translateX(22px); }
+    #status { margin-top: 8px; font-size: 12px; color: #666; }
+  </style>
+</head>
+<body>
+  <h3>CSDN 博客优化</h3>
+  <div id="switch" class="toggle active"></div>
+  <div id="status">已启用</div>
+  <script src="popup.js"></script>
+</body>
+</html>
