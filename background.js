@@ -22,7 +22,9 @@ async function updateRules(enabled) {
 // 监听 popup 发来的消息
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.type === "toggle") {
-    updateRules(message.enabled).then(() => sendResponse({ ok: true }));
+    chrome.storage.local.set({ enabled: message.enabled }).then(() =>
+      updateRules(message.enabled)
+    ).then(() => sendResponse({ ok: true }));
     return true; // 异步响应
   }
   if (message.type === "getStatus") {
